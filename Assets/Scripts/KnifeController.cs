@@ -12,15 +12,6 @@ public class KnifeController : MonoBehaviour
     public Vector2f currentPosition;
 
     private Coroutine _moveCoroutine; // 用于控制协程
-
-    
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            MoveKnife();
-        }
-    }
     
     // 外部调用此函数触发移动
     public void MoveKnife()
