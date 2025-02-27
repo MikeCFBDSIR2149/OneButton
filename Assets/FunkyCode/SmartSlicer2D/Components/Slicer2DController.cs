@@ -55,19 +55,23 @@ public class Slicer2DController : MonoBehaviour {
 
 	public static Color[] slicerColors = {Color.black, Color.green, Color.yellow , Color.red, new Color(1f, 0.25f, 0.125f)};
 
+	private static KnifeController knifeController;
+
 	public void Awake()
 	{
 		instance = this;
+		knifeController = FindFirstObjectByType<KnifeController>();
 	}
 
 	public static Vector2f GetMousePosition()
 	{
 		//Vector3 pos = Input.mousePosition; //pos.z = Camera.main.transform.position.z;
-		return(new Vector2f (Camera.main.ScreenToWorldPoint (Input.mousePosition)));
+		return(knifeController.currentPosition);
 	}
 
 	public void SetSliceType(int type)
 	{
+		
 		sliceType = (SliceType)type;
 	}
 
@@ -88,7 +92,7 @@ public class Slicer2DController : MonoBehaviour {
 	}
 
 	public void OnRenderObject() {
-		Vector2f pos = GetMousePosition ();
+		Vector2f pos = GetMousePosition();
 
 		if (drawSlicer == false)
 			return;
@@ -152,60 +156,23 @@ public class Slicer2DController : MonoBehaviour {
 		linearEvents.Clear ();
 
 		switch (sliceType) {	
-			case SliceType.Linear:
-				UpdateLinear (pos);
-				break;
-
 			case SliceType.Complex:
 				UpdateComplex (pos);
-				break;
-
-			case SliceType.Point:
-				UpdatePoint (pos);
-				break;
-
-			case SliceType.Explode:			
-				UpdateExplode (pos);
-				break;
-
-			case SliceType.Create:
-				UpdateCreate (pos);
-				break;
-
-			case SliceType.Polygon:
-				UpdatePolygon (pos);
 				break;
 
 			default:
 				break; 
 		}
 	}
-		
-	private void UpdateLinear(Vector2f pos)
-	{
-		if (Input.GetMouseButtonDown (0)) 
-			linearPair.A.Set (pos);
-
-		if (Input.GetMouseButton (0)) {
-			linearPair.B.Set (pos);
-			mouseDown = true;
-		}
-
-		if (mouseDown == true && Input.GetMouseButton (0) == false) {
-			mouseDown = false;
-			LinearSlice (linearPair);
-			linearEvents.Add (linearPair);
-		}
-	}
 
 	private void UpdateComplex(Vector2f pos)
 	{
-		if (Input.GetMouseButtonDown (0)) {
+		if (mouseDown == false && knifeController.isCutting) {
 			complexPairs.Clear ();
-			complexPairs.Add (pos);
+			complexPairs.Add(pos);
 		}
 
-		if (Input.GetMouseButton (0)) {
+		if (knifeController.isCutting) {
 			Vector2f posMove = new Vector2f (complexPairs.Last ());
 			while ((Vector2f.Distance (posMove, pos) > minVertsDistance)) {
 				float direction = Vector2f.Atan2 (pos, posMove);
@@ -216,77 +183,11 @@ public class Slicer2DController : MonoBehaviour {
 			mouseDown = true;
 		}
 
-		if (mouseDown == true && Input.GetMouseButton (0) == false) {
+		if (mouseDown == true && !knifeController.isCutting) {
 			mouseDown = false;
 			Slicer2D.complexSliceType = complexSliceType;
 			ComplexSlice (complexPairs);
 			complexEvents.Add (complexPairs);
-		}
-	}
-
-	private void UpdatePoint(Vector2f pos)
-	{
-		if (Input.GetMouseButtonDown (0)) 
-			PointSlice(pos);
-	}
-
-	private void UpdatePolygon(Vector2f pos)
-	{
-		mouseDown = true;
-
-		if (Input.GetMouseButtonDown (0))
-			PolygonSlice (pos);
-	}
-
-	private void UpdateExplode(Vector2f pos)
-	{
-		if (Input.GetMouseButtonDown (0))
-			ExplodingSlice(pos);
-	}
-
-	private void UpdateCreate(Vector2f pos)
-	{
-		if (Input.GetMouseButtonDown (0)) {
-			complexPairs.Clear ();
-			complexPairs.Add (pos);
-		}
-
-		if (createType == CreateType.Slice) {
-			if (Input.GetMouseButton (0)) {
-				if (complexPairs.Count == 0 || (Vector2f.Distance (pos, complexPairs.Last ()) > minVertsDistance))
-					complexPairs.Add (pos);
-
-				mouseDown = true;
-			}
-
-			if (mouseDown == true && Input.GetMouseButton (0) == false) {
-				mouseDown = false;
-				CreatorSlice (complexPairs);
-			}
-		} else {
-			mouseDown = true;
-			if (Input.GetMouseButtonDown (0))
-				PolygonCreator (pos);
-		}
-	}
-
-	private void LinearSlice(Pair2f slice)
-	{
-		List<Slice2D> results = Slicer2D.LinearSliceAll (slice, sliceLayer);
-
-		if (addForce == true) {
-			float sliceRotation = Vector2f.Atan2 (slice.B, slice.A);
-
-			foreach (Slice2D id in results) {
-				foreach (GameObject gameObject in id.gameObjects) {
-					Rigidbody2D rigidBody2D = gameObject.GetComponent<Rigidbody2D> ();
-					if (rigidBody2D)
-						foreach (Vector2f p in id.collisions) {
-							Vector2 force = new Vector2 (Mathf.Cos (sliceRotation) * addForceAmount, Mathf.Sin (sliceRotation) * addForceAmount);
-							rigidBody2D.AddForceAtPosition (force, p.Get ());
-						}
-				}
-			}
 		}
 	}
 
@@ -308,96 +209,4 @@ public class Slicer2DController : MonoBehaviour {
 					}
 				}
 	}
-
-	private void PointSlice(Vector2f pos)
-	{
-		float rotation = 0;
-
-		switch (sliceRotation) {	
-			case SliceRotation.Random:
-				rotation = UnityEngine.Random.Range (0, Mathf.PI * 2);
-				break;
-
-			case SliceRotation.Vertical:
-				rotation = Mathf.PI / 2f;
-				break;
-
-			case SliceRotation.Horizontal:
-				rotation = Mathf.PI;
-				break;
-		}
-
-		Slicer2D.PointSliceAll (pos, rotation, sliceLayer);
-	}
-		
-	private void PolygonSlice(Vector2f pos)
-	{
-		Polygon slicePolygonDestroy = null;
-		if (polygonDestroy == true)
-			slicePolygonDestroy = Polygon.Create (polygonType, polygonSize * 1.1f);
-
-		Slicer2D.PolygonSliceAll(pos, Polygon.Create (polygonType, polygonSize), slicePolygonDestroy, sliceLayer);
-	}
-
-	private void ExplodingSlice(Vector2f pos)
-	{
-		List<Slice2D> results =	Slicer2D.ExplodingSliceAll (pos, sliceLayer);
-		if (addForce == true)
-			foreach (Slice2D id in results)
-				foreach (GameObject gameObject in id.gameObjects) {
-					Rigidbody2D rigidBody2D = gameObject.GetComponent<Rigidbody2D> ();
-					if (rigidBody2D) {
-						float sliceRotation = Vector2f.Atan2 (pos, new Vector2f (gameObject.transform.position));
-						Rect rect = Polygon.CreateFromCollider (gameObject).GetBounds ();
-						rigidBody2D.AddForceAtPosition (new Vector2 (Mathf.Cos (sliceRotation) * addForceAmount / 10f, Mathf.Sin (sliceRotation) * addForceAmount/ 10f), rect.center);
-					}
-				}
-	}
-
-	private void ExplodeAll()
-	{
-		List<Slice2D> results =	Slicer2D.ExplodeAll (sliceLayer);
-		if (addForce == true)
-			foreach (Slice2D id in results)
-				foreach (GameObject gameObject in id.gameObjects) {
-					Rigidbody2D rigidBody2D = gameObject.GetComponent<Rigidbody2D> ();
-					if (rigidBody2D) {
-						float sliceRotation = Vector2f.Atan2 (new Vector2f(0, 0), new Vector2f (gameObject.transform.position));
-						Rect rect = Polygon.CreateFromCollider (gameObject).GetBounds ();
-						rigidBody2D.AddForceAtPosition (new Vector2 (Mathf.Cos (sliceRotation) * addForceAmount / 10f, Mathf.Sin (sliceRotation) * addForceAmount/ 10f), rect.center);
-					}
-				}
-	}
-
-	private void CreatorSlice(List <Vector2f> slice)
-	{
-		Polygon newPolygon = Slicer2D.CreatorSlice (slice);
-		if (newPolygon != null) 
-			CreatePolygon (newPolygon);
-	}
-
-	private void PolygonCreator(Vector2f pos)
-	{
-		Polygon newPolygon = Polygon.Create (polygonType, polygonSize);
-		newPolygon = newPolygon.ToOffset (pos);
-		CreatePolygon (newPolygon);
-	}
-
-	private void CreatePolygon(Polygon newPolygon)
-	{
-		GameObject newGameObject = new GameObject ();
-		newGameObject.AddComponent<Rigidbody2D> ();
-		newGameObject.transform.parent = transform;
-		newGameObject.AddComponent<ColliderLineRenderer2D> ().color = Color.black;
-		PolygonGenerator2D.GenerateCollider (newGameObject, newPolygon);
-
-		Slicer2D smartSlicer = newGameObject.AddComponent<Slicer2D> ();
-		smartSlicer.textureType = Slicer2D.TextureType.Mesh;
-		smartSlicer.material = material;
-
-		PolygonGenerator2D.GenerateMesh (newGameObject, newPolygon, new Vector2 (1, 1));
-	}
-
-	static public List<List<Vector2f>> GetComplexEvents(){ return(complexEvents); }
-	static public List<Pair2f> GetLinearEvents() { return(linearEvents); }
 }
