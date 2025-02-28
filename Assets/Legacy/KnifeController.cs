@@ -11,7 +11,7 @@ public class KnifeController : MonoBehaviour
     public Vector2f endPosition = new Vector2f(0f, 1f);   // 目标位置
     public Vector2f currentPosition;
 
-    private Coroutine _moveCoroutine; // 用于控制协程
+    private Coroutine moveCoroutine; // 用于控制协程
     
     // 外部调用此函数触发移动
     public void MoveKnife()
