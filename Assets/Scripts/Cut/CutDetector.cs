@@ -2,37 +2,23 @@ using UnityEngine;
 
 public class CutDetector : MonoBehaviour
 {
-    private Knife knife;
-    private TrailRenderer trailRenderer;
-    private bool isCutting = false; // 是否正在切割
+    [Header("基础设置")]
+    [SerializeField] private Collider2D bladeCollider; // 拖入刀尖子物体的碰撞体
 
     private void Start()
     {
-        knife = GetComponent<Knife>();
-        trailRenderer = GetComponentInChildren<TrailRenderer>();
+        if (bladeCollider != null)
+        {
+            bladeCollider.isTrigger = true; // 确保是触发器
+        }
     }
 
-    private void Update()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        // 检测刀是否开始切割
-        if (trailRenderer.emitting && !isCutting)
+        // 检测到可切割物体时触发
+        if (other.TryGetComponent<CuttableObject>(out var cuttable))
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.zero);
-
-            if (hit.collider != null)
-            {
-                CuttableObject cuttableObject = hit.collider.GetComponent<CuttableObject>();
-                if (cuttableObject != null)
-                {
-                    isCutting = true; //  
-                    cuttableObject.OnCut(hit.point); // 调用被切物体的 OnCut 方法
-                }
-            }
-        }
-        // 检测刀是否结束切割
-        else if (!trailRenderer.emitting && isCutting)
-        {
-            isCutting = false; // 重置切割状态
+            cuttable.HandleCut(bladeCollider.transform.position);
         }
     }
 }
