@@ -15,12 +15,16 @@ public class Knife : MonoBehaviour
     public float cutDuration; // 切割持续时间
     public AnimationCurve cutCurve; // AnimationCurve 来控制切割动画的时间进度
 
+    public GameObject knifeCore;
+    private CutDetector cutDetector;
     private TrailRenderer trailRenderer;
     private float cutTimeElapsed;
 
     private void Start()
     {
-        trailRenderer = GetComponentInChildren<TrailRenderer>();
+        cutDetector = knifeCore.GetComponent<CutDetector>();
+        trailRenderer = knifeCore.GetComponent<TrailRenderer>();
+        cutDetector.alreadyCut = false;
     }
 
     public void Cut()
@@ -31,6 +35,8 @@ public class Knife : MonoBehaviour
     
     private IEnumerator CutCoroutine()
     {
+        knifeCore.SetActive(true);
+        
         trailRenderer.emitting = true;
         
         while (cutTimeElapsed < cutDuration)
@@ -50,8 +56,12 @@ public class Knife : MonoBehaviour
         trailRenderer.emitting = false;
         trailRenderer.Clear();
         
+        knifeCore.SetActive(false);
+        
         transform.position = pointA;
         transform.rotation = Quaternion.Euler(startRotation);
+
+        cutDetector.alreadyCut = false;
     }
     
     private static Vector2 CalculateBezierPoint(float t, Vector2 p0, Vector2 p1, Vector2 p2)

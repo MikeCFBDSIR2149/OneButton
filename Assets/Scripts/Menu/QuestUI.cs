@@ -20,6 +20,7 @@ public class QuestUI : MonoBehaviour
 
     private void Start()
     {
+        questManager = FindFirstObjectByType<QuestManager>();
         questManager.OnQuestUpdated += UpdateUI;
         questManager.OnQuestFailed += OnQuestFailed;
         UpdateUI();

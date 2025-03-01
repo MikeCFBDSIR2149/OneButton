@@ -11,7 +11,7 @@ public class DeliveryZone : MonoBehaviour
 
     private void Start()
     {
-        _questManager = FindObjectOfType<QuestManager>();
+        _questManager = FindFirstObjectByType<QuestManager>();
         GetComponent<Collider2D>().isTrigger = true;
     }
 

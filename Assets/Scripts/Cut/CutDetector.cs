@@ -1,24 +1,24 @@
+using System;
 using UnityEngine;
 
 public class CutDetector : MonoBehaviour
 {
-    [Header("基础设置")]
-    [SerializeField] private Collider2D bladeCollider; // 拖入刀尖子物体的碰撞体
+    private Collider2D bladeCollider;
+    internal bool alreadyCut;
 
     private void Start()
     {
-        if (bladeCollider != null)
-        {
-            bladeCollider.isTrigger = true; // 确保是触发器
-        }
+        bladeCollider = GetComponent<Collider2D>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (!bladeCollider) return;
+        if (alreadyCut) return;
+        
         // 检测到可切割物体时触发
-        if (other.TryGetComponent<CuttableObject>(out var cuttable))
-        {
-            cuttable.HandleCut(bladeCollider.transform.position);
-        }
+        if (!other.TryGetComponent<CuttableObject>(out CuttableObject cuttable)) return;
+        alreadyCut = true;
+        cuttable.HandleCut(bladeCollider.transform.position);
     }
 }
