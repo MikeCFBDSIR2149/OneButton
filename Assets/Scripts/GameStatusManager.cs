@@ -18,15 +18,36 @@ public class GameStatusManager : MonoSingleton<GameStatusManager>
 {
     public Status CurrentStatus { get; private set; }
 
-    private void Start()
+    public void Initialize()
     {
-        CurrentStatus = SceneManager.GetActiveScene().buildIndex == 0 ? Status.MainMenu : Status.GamePlay;
+        CurrentStatus = (Status)SceneManager.GetActiveScene().buildIndex;
+        #if UNITY_EDITOR
+            CurrentStatus = Status.GamePlay;
+        #endif
+    }
+
+    public void BackToMainMenu()
+    {
+        SwitchScene(0);
+        CurrentStatus = Status.MainMenu;
     }
 
     public void StartGamePrep()
     {
         SwitchScene(1);
         CurrentStatus = Status.GamePrep;
+    }
+
+    public void StartGame()
+    {
+        SwitchScene(2);
+        CurrentStatus = Status.GamePlay;
+    }
+
+    public void GameOver()
+    {
+        SwitchScene(3);
+        CurrentStatus = Status.GameOver;
     }
 
     public void ExitGame()
@@ -38,22 +59,8 @@ public class GameStatusManager : MonoSingleton<GameStatusManager>
         #endif
     }
 
-    public void SwitchScene(int sceneIndex)
+    private static void SwitchScene(int sceneIndex)
     {
         SceneManager.LoadScene(sceneIndex);
     }
-
-    // private IEnumerator CountDown()
-    // {
-    //     int time = 3;
-    //     while (time > 0)
-    //     {
-    //         yield return new WaitForSeconds(1f);
-    //         time--;
-    //         text.text = time.ToString();
-    //     }
-    //     countdownCoroutine = null;
-    //     text.gameObject.SetActive(false);
-    //     CurrentStatus = Status.GamePlay;
-    // }
 }
