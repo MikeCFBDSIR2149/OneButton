@@ -6,7 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Legacy/CutDemo.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    path: Assets/Scenes/MainMenu.unity
+    guid: 452bfcb772561441b87708cc3b682b66
+  - enabled: 1
+    path: Assets/Scenes/Prep.unity
+    guid: 3ae21d5b5dba144de9154ac88292877c
+  - enabled: 1
+    path: Assets/Scenes/Demo3.unity
+    guid: e9ba65c0b5b344632b0c2ef5d37e3f5e
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
