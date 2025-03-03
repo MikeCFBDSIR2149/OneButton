@@ -77,14 +77,16 @@ public class InputController : MonoBehaviour
     // 长按事件
     private void OnLongPress()
     {
-        if (GameStatusManager.Instance.CurrentStatus == Status.MainMenu) GameStatusManager.Instance.ExitGame();
-        else if (GameStatusManager.Instance.CurrentStatus == Status.GamePlay) knife.Cut();
+        /*if (GameStatusManager.Instance.CurrentStatus == Status.MainMenu) GameStatusManager.Instance.ExitGame();
+        else if (GameStatusManager.Instance.CurrentStatus == Status.GamePlay) */
+            //knife.Cut();
     }
 
     // 短按事件
     private void OnShortPress()
     {
-        if (GameStatusManager.Instance.CurrentStatus == Status.MainMenu) GameStatusManager.Instance.StartGamePrep();
-        else if (GameStatusManager.Instance.CurrentStatus == Status.GamePlay) knife.Cut();
+        /*if (GameStatusManager.Instance.CurrentStatus == Status.MainMenu) GameStatusManager.Instance.StartGamePrep();
+        else if (GameStatusManager.Instance.CurrentStatus == Status.GamePlay) */
+            knife.Cut();
     }
 }

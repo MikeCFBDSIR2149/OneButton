@@ -76,22 +76,7 @@ public class QuestUI : MonoBehaviour
     }
 }
 
-[RequireComponent(typeof(Image))]
-public class QuestItemUI : MonoBehaviour
-{
-    public Image icon;
-    public TMP_Text nameText;
-    public TMP_Text amountText;
-    public Image background;
 
-    public void Initialize(Sprite iconSprite, string name, string amount, Color bgColor)
-    {
-        icon.sprite = iconSprite;
-        nameText.text = name;
-        amountText.text = amount;
-        background.color = bgColor;
-    }
-}
 /*UI设置：
 
 创建Scroll View作为任务列表容器 制作任务项预制体并配置QuestItemUI 将预制体拖入QuestUI组件*/

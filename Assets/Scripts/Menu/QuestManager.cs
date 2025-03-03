@@ -23,6 +23,8 @@ public class QuestManager : MonoBehaviour
     public System.Action OnQuestFailed;
 
     private Dictionary<IngredientType, GameObject> _prefabMap;
+    // 新增事件：任务完成时触发
+    public System.Action OnQuestCompleted;
 
     private void Awake()
     {
@@ -41,6 +43,16 @@ public class QuestManager : MonoBehaviour
                 _prefabMap[item.type] = prefab;
             }
         }
+    }
+    private bool CheckQuestComplete()
+    {
+        // 检查所有食材是否满足需求
+        foreach (var recipe in CurrentQuest)
+        {
+            if (recipe.currentAmount < recipe.requiredAmount)
+                return false;
+        }
+        return true;
     }
 
     public bool TryDeliverIngredient(IngredientType type)
@@ -64,14 +76,23 @@ public class QuestManager : MonoBehaviour
         }
 
         OnQuestUpdated?.Invoke();
+
+        // 新增：任务完成时自动生成新任务
+        if (CheckQuestComplete())
+        {
+            OnQuestCompleted?.Invoke();
+            GenerateNewQuest(); // 生成新任务
+        }
+
         return overDeliver;
     }
-
     public void GenerateNewQuest()
     {
         CurrentQuest = new List<QuestRecipe>();
         var types = new List<IngredientType>(_prefabMap.Keys);
-        int count = Random.Range(config.minIngredients, config.maxIngredients + 1);
+        // 强制生成至少2种食材需求
+        int minCount = Mathf.Max(2, config.minIngredients);
+        int count = Random.Range(minCount, config.maxIngredients + 1);
 
         for (int i = 0; i < count && types.Count > 0; i++)
         {
@@ -87,7 +108,7 @@ public class QuestManager : MonoBehaviour
 
             types.RemoveAt(index);
         }
-
+        Debug.Log($"生成新任务，包含 {CurrentQuest.Count} 种食材需求");
         OnQuestUpdated?.Invoke();
     }
 
@@ -107,18 +128,3 @@ public class QuestManager : MonoBehaviour
     }
 }
 
-[System.Serializable]
-public class QuestRecipe
-{
-    public IngredientType type;
-    public int requiredAmount;
-    public int currentAmount;
-}
-
-public enum IngredientType
-{
-    Apple,
-    Banana,
-    Carrot,
-    // 添加更多类型...
-}

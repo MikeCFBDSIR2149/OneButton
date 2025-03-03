@@ -36,7 +36,6 @@ public class DeliveryZone : MonoBehaviour
         
         if (overDeliver)
         {
-            Debug.Log("超额交付！任务失败");
             _questManager.ResetCurrentQuest();
         }
     }
