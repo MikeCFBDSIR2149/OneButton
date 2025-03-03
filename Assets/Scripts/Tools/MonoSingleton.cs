@@ -33,7 +33,7 @@ namespace Tools
                 
                 GameObject singleton = new GameObject();
                 _instance = singleton.AddComponent<T>();
-                singleton.name = "(singleton) " + typeof(T).ToString();
+                singleton.name = "(singleton) " + typeof(T);
 
                 DontDestroyOnLoad(singleton);
 

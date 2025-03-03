@@ -16,6 +16,7 @@ public class InputController : MonoBehaviour
 
     private void Start()
     {
+        GameStatusManager.Instance.Initialize();
         knife = FindFirstObjectByType<Knife>();
         pressSlider.value = 0;
         fillImage = pressSlider.fillRect.GetComponent<Image>();
@@ -77,14 +78,40 @@ public class InputController : MonoBehaviour
     // 长按事件
     private void OnLongPress()
     {
-        if (GameStatusManager.Instance.CurrentStatus == Status.MainMenu) GameStatusManager.Instance.ExitGame();
-        else if (GameStatusManager.Instance.CurrentStatus == Status.GamePlay) knife.Cut();
+        switch (GameStatusManager.Instance.CurrentStatus)
+        {
+            case Status.MainMenu:
+                GameStatusManager.Instance.ExitGame();
+                break;
+            case Status.GamePrep:
+                GameStatusManager.Instance.StartGame();
+                break;
+            case Status.GamePlay:
+                // do check
+                break;
+            case Status.GameOver:
+                GameStatusManager.Instance.BackToMainMenu();
+                break;
+        }
     }
 
     // 短按事件
     private void OnShortPress()
     {
-        if (GameStatusManager.Instance.CurrentStatus == Status.MainMenu) GameStatusManager.Instance.StartGamePrep();
-        else if (GameStatusManager.Instance.CurrentStatus == Status.GamePlay) knife.Cut();
+        switch (GameStatusManager.Instance.CurrentStatus)
+        {
+            case Status.MainMenu:
+                GameStatusManager.Instance.StartGamePrep();
+                break;
+            case Status.GamePlay:
+                knife.Cut();
+                break;
+            case Status.GameOver:
+                GameStatusManager.Instance.StartGame();
+                break;
+            case Status.GamePrep:
+            default:
+                break;
+        }
     }
 }
