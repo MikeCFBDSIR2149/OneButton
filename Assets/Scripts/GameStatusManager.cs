@@ -22,7 +22,8 @@ public class GameStatusManager : MonoSingleton<GameStatusManager>
     {
         CurrentStatus = (Status)SceneManager.GetActiveScene().buildIndex;
         #if UNITY_EDITOR
-            CurrentStatus = Status.GamePlay;
+            if (SceneManager.GetActiveScene().buildIndex > 3)
+                CurrentStatus = Status.GamePlay;
         #endif
     }
 

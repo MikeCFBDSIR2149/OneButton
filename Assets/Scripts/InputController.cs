@@ -13,10 +13,14 @@ public class InputController : MonoBehaviour
     private Knife knife;
     private float pressDuration; // 记录按键按下的时间
     private bool wasLongPress;
+    
+    public bool blockInput;
 
     private void Start()
     {
         GameStatusManager.Instance.Initialize();
+        if (GameStatusManager.Instance.CurrentStatus == Status.GameOver)
+            StartCoroutine(BlockInput());
         knife = FindFirstObjectByType<Knife>();
         pressSlider.value = 0;
         fillImage = pressSlider.fillRect.GetComponent<Image>();
@@ -24,6 +28,7 @@ public class InputController : MonoBehaviour
 
     private void Update()
     {
+        if (blockInput) return;
         if (inPressCD) return;
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -113,5 +118,12 @@ public class InputController : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    private IEnumerator BlockInput()
+    {
+        blockInput = true;
+        yield return new WaitForSeconds(3f);
+        blockInput = false;
     }
 }
