@@ -249,6 +249,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  knifeCore: {fileID: 894492233}
 --- !u!1 &84515822
 GameObject:
   m_ObjectHideFlags: 0
@@ -500,7 +501,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ea3a1b25be9a84278b20e3f87c0b6349, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5959436, g: 0.6830188, b: 0.27191874, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -789,6 +790,7 @@ GameObject:
   - component: {fileID: 894492234}
   - component: {fileID: 894492235}
   - component: {fileID: 894492236}
+  - component: {fileID: 894492237}
   m_Layer: 0
   m_Name: Core
   m_TagString: Untagged
@@ -987,6 +989,18 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
+--- !u!114 &894492237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894492233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60355947dbe7d614e953ff32d4865208, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &941562480
 GameObject:
   m_ObjectHideFlags: 0

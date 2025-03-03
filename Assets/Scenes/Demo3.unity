@@ -898,7 +898,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   longPressThreshold: 0.3
-  pressCD: 0.2
+  pressCD: 0.1
   pressSlider: {fileID: 567654799}
 --- !u!4 &1424377939
 Transform:
@@ -1177,7 +1177,6 @@ GameObject:
   - component: {fileID: 1611410796}
   - component: {fileID: 1611410795}
   - component: {fileID: 1611410794}
-  - component: {fileID: 1611410799}
   m_Layer: 0
   m_Name: Knife
   m_TagString: Untagged
@@ -1202,7 +1201,7 @@ MonoBehaviour:
   pointC: {x: 2, y: 3.5}
   startRotation: {x: 0, y: 0, z: -40}
   endRotation: {x: 0, y: 0, z: 30}
-  cutDuration: 0.15
+  cutDuration: 0.12
   cutCurve:
     serializedVersion: 2
     m_Curve:
@@ -1298,52 +1297,6 @@ Transform:
   - {fileID: 1524989479}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -40}
---- !u!61 &1611410799
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1611410793}
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: -3.1246724, y: -1.2702222}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 1, y: 1}
-    oldSize: {x: 3.6, y: 3.6}
-    newSize: {x: 3.6, y: 3.6}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 0.950655, y: 0.26108277}
-  m_EdgeRadius: 0
 --- !u!1 &1667707239
 GameObject:
   m_ObjectHideFlags: 0
