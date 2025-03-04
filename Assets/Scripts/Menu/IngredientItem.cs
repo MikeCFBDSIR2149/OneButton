@@ -41,8 +41,9 @@ public class IngredientItem : MonoBehaviour
     {
         if (polygonCollider)
             polygonCollider.sharedMaterial = finalMaterial;
-        rb.position += new Vector2(0, 1f);
+        rb.velocityY = Mathf.Clamp(rb.velocityY, -1.4f, 1);
+        rb.position += new Vector2(0, 1.5f);
         // rb.velocity = new Vector2(4f, 0f);
-        rb.AddForce(new Vector2(6f, 4f), ForceMode2D.Impulse);
+        rb.AddForce(new Vector2(8f, 4f), ForceMode2D.Impulse);
     }
 }
