@@ -9,6 +9,7 @@ public class QuestRecipe
 
 public enum IngredientType
 {
+    Watermelon,
     Apple,
     Banana,
     Carrot,

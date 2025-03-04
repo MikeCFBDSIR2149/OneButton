@@ -6,8 +6,8 @@ public class QuestManager : MonoBehaviour
     [System.Serializable]
     public class QuestConfig
     {
-        public int minIngredients = 2;
-        public int maxIngredients = 5;
+        public int minIngredients = 1;
+        public int maxIngredients = 3;
         public int minAmount = 1;
         public int maxAmount = 5;
     }
@@ -91,8 +91,8 @@ public class QuestManager : MonoBehaviour
         CurrentQuest = new List<QuestRecipe>();
         var types = new List<IngredientType>(_prefabMap.Keys);
         // 强制生成至少2种食材需求
-        int minCount = Mathf.Max(2, config.minIngredients);
-        int count = Random.Range(minCount, config.maxIngredients + 1);
+        // int minCount = Mathf.Max(2, config.minIngredients);
+        int count = Random.Range(config.minIngredients, config.maxIngredients + 1);
 
         for (int i = 0; i < count && types.Count > 0; i++)
         {

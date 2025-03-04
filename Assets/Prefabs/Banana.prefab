@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3368358171652875714}
   - component: {fileID: 2918106224616596693}
   m_Layer: 6
-  m_Name: Circle1
+  m_Name: Banana
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

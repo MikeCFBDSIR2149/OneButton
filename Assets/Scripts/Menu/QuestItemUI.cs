@@ -7,8 +7,8 @@ using System.Collections.Generic;
 public class QuestItemUI : MonoBehaviour
 {
     public Image icon;
-    public Text nameText;
-    public Text amountText;
+    public TextMeshProUGUI nameText;
+    public TextMeshProUGUI amountText;
     public Image background;
 
     public void Initialize(Sprite iconSprite, string name, string amount, Color bgColor)
