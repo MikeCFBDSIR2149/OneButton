@@ -130,9 +130,10 @@ GameObject:
   - component: {fileID: 187107841}
   - component: {fileID: 187107843}
   - component: {fileID: 187107842}
+  - component: {fileID: 187107844}
   m_Layer: 5
   m_Name: Tips
-  m_TagString: Untagged
+  m_TagString: Finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -163,7 +164,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 187107840}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -258,6 +259,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 187107840}
   m_CullTransparentMesh: 1
+--- !u!114 &187107844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187107840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8267c5bc88a4342348bb9c0fb104807e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &226698145
 GameObject:
   m_ObjectHideFlags: 0
@@ -706,6 +719,7 @@ MonoBehaviour:
   longPressThreshold: 1
   pressCD: 0.1
   pressSlider: {fileID: 226698147}
+  blockInput: 0
 --- !u!4 &1536778896
 Transform:
   m_ObjectHideFlags: 0

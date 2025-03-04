@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -92,7 +93,7 @@ public class InputController : MonoBehaviour
                 GameStatusManager.Instance.StartGame();
                 break;
             case Status.GamePlay:
-                // do check
+                knife.LongCut();
                 break;
             case Status.GameOver:
                 GameStatusManager.Instance.BackToMainMenu();
@@ -123,7 +124,12 @@ public class InputController : MonoBehaviour
     private IEnumerator BlockInput()
     {
         blockInput = true;
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
+        Cite cite = FindFirstObjectByType<Cite>();
+        if (cite)
+        {
+            cite.gameObject.GetComponent<TextMeshProUGUI>().enabled = true;
+        }
         blockInput = false;
     }
 }
