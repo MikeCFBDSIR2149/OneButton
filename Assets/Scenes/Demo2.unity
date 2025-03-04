@@ -353,7 +353,6 @@ GameObject:
   - component: {fileID: 304795378}
   - component: {fileID: 304795377}
   - component: {fileID: 304795376}
-  - component: {fileID: 304795379}
   m_Layer: 5
   m_Name: Scroll View
   m_TagString: Untagged
@@ -380,8 +379,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -805.22253, y: -382.82355}
-  m_SizeDelta: {x: -1626.4451, y: 753.8391}
+  m_AnchoredPosition: {x: -856.72504, y: -218.0159}
+  m_SizeDelta: {x: -1729.45, y: 424.224}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &304795376
 MonoBehaviour:
@@ -451,23 +450,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 304795374}
   m_CullTransparentMesh: 1
---- !u!114 &304795379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 304795374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb56078558d85c545b2d7a40a511a88a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  questItemParent: {fileID: 304795375}
-  questItemPrefab: {fileID: 8688982677633336904, guid: 36fa1295e67638b49bdb276646b36fc1, type: 3}
-  successColor: {r: 0, g: 1, b: 0, a: 1}
-  failColor: {r: 1, g: 0, b: 0, a: 1}
-  questManager: {fileID: 320840338}
 --- !u!1 &311563522
 GameObject:
   m_ObjectHideFlags: 0
@@ -1572,6 +1554,7 @@ MonoBehaviour:
   longPressThreshold: 0.3
   pressCD: 0.2
   pressSlider: {fileID: 567654799}
+  blockInput: 0
 --- !u!4 &1424377939
 Transform:
   m_ObjectHideFlags: 0
@@ -2175,8 +2158,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1764671641}
-  - component: {fileID: 1764671642}
   - component: {fileID: 1764671643}
+  - component: {fileID: 1764671644}
+  - component: {fileID: 1764671645}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -2200,23 +2184,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.0000047683716, y: -0.00001874095}
-  m_SizeDelta: {x: -256.55493, y: 0}
+  m_AnchoredPosition: {x: 0.0006515903, y: 0.00002936473}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
---- !u!114 &1764671642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1764671640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalFit: 0
-  m_VerticalFit: 2
 --- !u!114 &1764671643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2230,19 +2200,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 10
-    m_Right: 10
-    m_Top: 10
+    m_Left: 20
+    m_Right: 0
+    m_Top: 80
     m_Bottom: 10
   m_ChildAlignment: 0
-  m_Spacing: 10
-  m_ChildForceExpandWidth: 0
-  m_ChildForceExpandHeight: 0
+  m_Spacing: 150
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
-  m_ChildScaleWidth: 1
-  m_ChildScaleHeight: 1
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1764671644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1764671640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb56078558d85c545b2d7a40a511a88a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questItemParent: {fileID: 1764671641}
+  questItemPrefab: {fileID: 8688982677633336904, guid: 36fa1295e67638b49bdb276646b36fc1, type: 3}
+  successColor: {r: 0, g: 1, b: 0, a: 1}
+  failColor: {r: 1, g: 0, b: 0, a: 1}
+  questManager: {fileID: 320840338}
+--- !u!114 &1764671645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1764671640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
 --- !u!1 &1805050554
 GameObject:
   m_ObjectHideFlags: 0
