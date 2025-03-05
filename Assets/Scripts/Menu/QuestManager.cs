@@ -44,9 +44,26 @@ public class QuestManager : MonoBehaviour
             }
         }
     }
-    private bool CheckQuestComplete()
+    public bool IsIngredientRequired(IngredientType type)
     {
-        // 检查所有食材是否满足需求
+        if (CurrentQuest == null) return false;
+        
+        foreach (var recipe in CurrentQuest)
+        {
+            if (recipe.type == type)
+                return true;
+        }
+        return false;
+    }
+
+    public void FailCurrentQuest()
+    {
+        OnQuestFailed?.Invoke();
+        GenerateNewQuest(); // 失败后生成新任务
+    }
+
+    public bool CheckQuestComplete()
+    {
         foreach (var recipe in CurrentQuest)
         {
             if (recipe.currentAmount < recipe.requiredAmount)
@@ -86,6 +103,7 @@ public class QuestManager : MonoBehaviour
 
         return overDeliver;
     }
+    
     public void GenerateNewQuest()
     {
         CurrentQuest = new List<QuestRecipe>();
