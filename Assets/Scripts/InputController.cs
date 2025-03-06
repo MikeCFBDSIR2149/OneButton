@@ -16,6 +16,8 @@ public class InputController : MonoBehaviour
     private bool wasLongPress;
     
     public bool blockInput;
+    
+    public bool allowBarIndicator;
 
     private void Start()
     {
@@ -23,8 +25,11 @@ public class InputController : MonoBehaviour
         if (GameStatusManager.Instance.CurrentStatus == Status.GameOver)
             StartCoroutine(BlockInput());
         knife = FindFirstObjectByType<Knife>();
-        pressSlider.value = 0;
-        fillImage = pressSlider.fillRect.GetComponent<Image>();
+        if (allowBarIndicator)
+        {
+            pressSlider.value = 0;
+            fillImage = pressSlider.fillRect.GetComponent<Image>();
+        }
     }
 
     private void Update()
@@ -35,7 +40,7 @@ public class InputController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             pressDuration = 0;
-            fillImage.color = Color.white;
+            if (fillImage) fillImage.color = Color.white;
         }
 
         if (Input.GetKey(KeyCode.Space))
@@ -43,12 +48,12 @@ public class InputController : MonoBehaviour
             pressDuration += Time.deltaTime;
             if (!wasLongPress)
             {
-                pressSlider.value = Mathf.Clamp01(pressDuration / longPressThreshold);
+                if (allowBarIndicator) pressSlider.value = Mathf.Clamp01(pressDuration / longPressThreshold);
 
                 if (pressDuration > longPressThreshold)
                 {
                     wasLongPress = true;
-                    fillImage.color = Color.yellow;
+                    if (fillImage) fillImage.color = Color.yellow;
                 }
             }
         }
@@ -62,7 +67,7 @@ public class InputController : MonoBehaviour
             }
             else
             {
-                fillImage.color = Color.cyan;
+                if (fillImage) fillImage.color = Color.cyan;
                 OnShortPress();
             }
 
@@ -75,8 +80,8 @@ public class InputController : MonoBehaviour
         inPressCD = true;
         yield return new WaitForSeconds(pressCD);
 
-        pressSlider.value = 0;
-        fillImage.color = Color.white;
+        if (allowBarIndicator) pressSlider.value = 0;
+        if (fillImage) fillImage.color = Color.white;
         wasLongPress = false;
         inPressCD = false;
     }

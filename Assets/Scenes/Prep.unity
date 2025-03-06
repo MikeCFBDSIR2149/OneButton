@@ -269,6 +269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 243c4a2c9b4c24a22b6d2b484418ed96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGamePlay: 0
   countdownTime: 30
 --- !u!1 &198081962
 GameObject:
@@ -1029,6 +1030,8 @@ MonoBehaviour:
   longPressThreshold: 1
   pressCD: 0.1
   pressSlider: {fileID: 1514582955}
+  blockInput: 0
+  allowBarIndicator: 1
 --- !u!4 &1912319485
 Transform:
   m_ObjectHideFlags: 0

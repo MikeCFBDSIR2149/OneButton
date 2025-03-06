@@ -720,6 +720,7 @@ MonoBehaviour:
   pressCD: 0.1
   pressSlider: {fileID: 226698147}
   blockInput: 0
+  allowBarIndicator: 1
 --- !u!4 &1536778896
 Transform:
   m_ObjectHideFlags: 0

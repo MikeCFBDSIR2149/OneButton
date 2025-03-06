@@ -529,6 +529,8 @@ MonoBehaviour:
   longPressThreshold: 2
   pressCD: 0.1
   pressSlider: {fileID: 1426186479}
+  blockInput: 0
+  allowBarIndicator: 1
 --- !u!4 &1854376198
 Transform:
   m_ObjectHideFlags: 0
