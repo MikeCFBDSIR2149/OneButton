@@ -118,7 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bea62b5f920d842efae5cc870b79e3fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalForce: 9
+  verticalForce: 11
   horizontalForce: 6
 --- !u!50 &3368358171652875714
 Rigidbody2D:

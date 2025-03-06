@@ -18,6 +18,9 @@ public class GameStatusManager : MonoSingleton<GameStatusManager>
 {
     public Status CurrentStatus { get; private set; }
 
+    public int score;
+    public int bestScore;
+
     public void Initialize()
     {
         CurrentStatus = (Status)SceneManager.GetActiveScene().buildIndex;
@@ -41,12 +44,14 @@ public class GameStatusManager : MonoSingleton<GameStatusManager>
 
     public void StartGame()
     {
+        score = 0;
         SwitchScene(2);
         CurrentStatus = Status.GamePlay;
     }
 
     public void GameOver()
     {
+        CheckBestScore();
         SwitchScene(3);
         CurrentStatus = Status.GameOver;
     }
@@ -63,5 +68,13 @@ public class GameStatusManager : MonoSingleton<GameStatusManager>
     private static void SwitchScene(int sceneIndex)
     {
         SceneManager.LoadScene(sceneIndex);
+    }
+    
+    private void CheckBestScore()
+    {
+        if (score > bestScore)
+        {
+            bestScore = score;
+        }
     }
 }

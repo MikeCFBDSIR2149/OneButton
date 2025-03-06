@@ -4,10 +4,7 @@ public class ProjectileLauncher : MonoBehaviour
 {
     public GameObject[] projectilePrefabs; // 发射的物体预制体数组
     public Transform launchPoint; // 发射点
-    public float launchSpeed = 10f; // 发射速度
-    public float launchAngle = 45f; // 发射角度（以度为单位）
-    public float gravity = -9.81f; // 重力加速度
-    public float timer = 1.0f; // 发射间隔时间
+    public float timer; // 发射间隔时间
 
     private void Update()
     {

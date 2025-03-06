@@ -97,6 +97,7 @@ public class QuestManager : MonoBehaviour
         // 新增：任务完成时自动生成新任务
         if (CheckQuestComplete())
         {
+            GameStatusManager.Instance.score++;
             OnQuestCompleted?.Invoke();
             GenerateNewQuest(); // 生成新任务
         }

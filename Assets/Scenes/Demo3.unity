@@ -319,7 +319,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -873,10 +873,7 @@ MonoBehaviour:
   - {fileID: 7788333703037728040, guid: 1072405d3e903d640bd954ebd2ff458f, type: 3}
   - {fileID: 7788333703037728040, guid: 9a5ef0d09d62b4d2dbabfec38bd669a1, type: 3}
   launchPoint: {fileID: 324559846}
-  launchSpeed: 2
-  launchAngle: 60
-  gravity: -9.81
-  timer: 2
+  timer: 1.5
 --- !u!212 &324559845
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -884,7 +881,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 324559843}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -940,7 +937,7 @@ Transform:
   m_GameObject: {fileID: 324559843}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.27, y: -3.42, z: 0}
+  m_LocalPosition: {x: -10.55, y: -6.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1772,7 +1769,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   longPressThreshold: 0.3
-  pressCD: 0.15
+  pressCD: 0.14
   pressSlider: {fileID: 567654799}
   blockInput: 0
   allowBarIndicator: 0
@@ -2176,7 +2173,7 @@ MonoBehaviour:
   pointF: {x: 5.3, y: -1.8}
   startRotation: {x: 0, y: 0, z: -30}
   endRotation: {x: 0, y: 0, z: 40}
-  cutDuration: 0.11
+  cutDuration: 0.12
   cutCurve:
     serializedVersion: 2
     m_Curve:
@@ -2201,7 +2198,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  longCutDuration: 0.14
+  longCutDuration: 0.15
   longCutCurve:
     serializedVersion: 2
     m_Curve:
@@ -2725,7 +2722,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGamePlay: 1
-  countdownTime: 30
+  countdownTime: 60
 --- !u!114 &1790857856
 MonoBehaviour:
   m_ObjectHideFlags: 0
