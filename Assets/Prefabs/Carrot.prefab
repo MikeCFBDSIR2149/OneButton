@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPrefabs:
   - {fileID: 5946666680808276450, guid: 09f93b6fca12e4e7cbce47db8fa74d33, type: 3}
-  maxCuts: 3
+  maxCuts: 5
   spawnOffset: {x: 0, y: 0.1}
 --- !u!212 &8529871548865104349
 SpriteRenderer:
