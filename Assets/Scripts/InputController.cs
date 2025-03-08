@@ -22,6 +22,7 @@ public class InputController : MonoBehaviour
     private void Start()
     {
         GameStatusManager.Instance.Initialize();
+        AudioManager.Instance.Initialize();
         if (GameStatusManager.Instance.CurrentStatus == Status.GameOver)
             StartCoroutine(BlockInput());
         knife = FindFirstObjectByType<Knife>();
@@ -99,6 +100,7 @@ public class InputController : MonoBehaviour
                 break;
             case Status.GamePlay:
                 knife.LongCut();
+                AudioManager.Instance.PlaySFX(1);
                 break;
             case Status.GameOver:
                 GameStatusManager.Instance.BackToMainMenu();
@@ -116,6 +118,7 @@ public class InputController : MonoBehaviour
                 break;
             case Status.GamePlay:
                 knife.Cut();
+                AudioManager.Instance.PlaySFX(0);
                 break;
             case Status.GameOver:
                 GameStatusManager.Instance.StartGame();
