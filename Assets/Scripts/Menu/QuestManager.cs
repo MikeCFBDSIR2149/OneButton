@@ -60,7 +60,7 @@ public class QuestManager : MonoBehaviour
     {
         OnQuestFailed?.Invoke();
         FindFirstObjectByType<CameraController>()?.ShakeCamera(0.1f, 0.04f);
-        GenerateNewQuest(); // 失败后生成新任务
+        //GenerateNewQuest(); // 失败后生成新任务
     }
 
     public bool CheckQuestComplete()
@@ -68,6 +68,15 @@ public class QuestManager : MonoBehaviour
         foreach (var recipe in CurrentQuest)
         {
             if (recipe.currentAmount < recipe.requiredAmount)
+                return false;
+        }
+        return true;
+    }
+    public bool CheckQuestFailed()
+    {
+        foreach (var recipe in CurrentQuest)
+        {
+            if (recipe.currentAmount >= recipe.requiredAmount)
                 return false;
         }
         return true;

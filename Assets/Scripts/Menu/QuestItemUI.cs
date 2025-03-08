@@ -18,4 +18,9 @@ public class QuestItemUI : MonoBehaviour
         amountText.text = amount;
         background.color = bgColor;
     }
+    public void SetBackgroundColor(Color color)
+    {
+        // 假设任务项的背景是一个 Image 组件
+        background.color = color;
+    }
 }

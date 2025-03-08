@@ -55,15 +55,28 @@ public class QuestUI : MonoBehaviour
     private void OnQuestFailed()
     {
         _isFailed = true;
-        UpdateUI();
-        StartCoroutine(ResetFailedState());
+        UpdateColorOnly(); // 只更新颜色为红色
+        StartCoroutine(ResetFailedState()); // 启动协程，等待两秒后恢复颜色并更新任务内容
+    }
+
+    private void UpdateColorOnly()
+    {
+        foreach (var item in _uiItems)
+        {
+            var ui = item.GetComponent<QuestItemUI>();
+            if (ui)
+            {
+                ui.SetBackgroundColor(_isFailed ? failColor : Color.white); // 更新背景颜色
+            }
+        }
     }
 
     private IEnumerator ResetFailedState()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2f); // 等待两秒
         _isFailed = false;
-        UpdateUI();
+        UpdateColorOnly(); // 恢复颜色为白色
+        questManager.GenerateNewQuest(); // 手动生成新任务
     }
 
     private void ClearUI()
@@ -76,7 +89,3 @@ public class QuestUI : MonoBehaviour
     }
 }
 
-
-/*UI设置：
-
-创建Scroll View作为任务列表容器 制作任务项预制体并配置QuestItemUI 将预制体拖入QuestUI组件*/

@@ -14,14 +14,14 @@ public class DishVisualController : MonoBehaviour
 
     [Header("Timing")]
     [SerializeField][Tooltip("完成状态持续时间（秒）")] 
-    private float completedShowDuration = 3f; // 默认延长至3秒
+    private float completedShowDuration = 1f; // 默认延长至1秒
     [SerializeField][Tooltip("失败状态持续时间（秒）")] 
-    private float failedShowDuration = 2f;    // 默认延长至2秒
+    private float failedShowDuration = 1f;    // 默认延长至1秒
 
     // 新增渐变动画参数
     [Header("Fade Animation")]
-    [SerializeField][Range(0.1f, 2f)] 
-    private float fadeOutDuration = 0.8f;     // 渐出动画时长
+    [SerializeField]
+    private float fadeOutDuration = 0.4f;     // 渐出动画时长
     [SerializeField] 
     private AnimationCurve fadeCurve = AnimationCurve.EaseInOut(0, 1, 1, 0);
 
@@ -37,15 +37,11 @@ public class DishVisualController : MonoBehaviour
     private void OnEnable()
     {
         _questManager.OnQuestUpdated += HandleQuestUpdate;
-        _questManager.OnQuestCompleted += HandleQuestCompleted;
-        _questManager.OnQuestFailed += HandleQuestFailed;
     }
 
     private void OnDisable()
     {
         _questManager.OnQuestUpdated -= HandleQuestUpdate;
-        _questManager.OnQuestCompleted -= HandleQuestCompleted;
-        _questManager.OnQuestFailed -= HandleQuestFailed;
     }
 
     private void HandleQuestUpdate()
@@ -57,8 +53,20 @@ public class DishVisualController : MonoBehaviour
             _resetCoroutine = null;
         }
 
-        // 如果当前有任意进度且未完成
-        if (HasPartialProgress())
+        // 如果所有任务都完成
+        if (_questManager.CheckQuestComplete())
+        {
+            dishRenderer.sprite = completedDishSprite;
+            _resetCoroutine = StartCoroutine(AnimatedResetAfterDelay(completedShowDuration));
+        }
+        // 如果所有任务都失败
+        else if (_questManager.CheckQuestFailed())
+        {
+            dishRenderer.sprite = failedDishSprite;
+            _resetCoroutine = StartCoroutine(AnimatedResetAfterDelay(failedShowDuration));
+        }
+        // 如果有部分进度
+        else if (HasPartialProgress())
         {
             dishRenderer.sprite = partialDishSprite;
         }
@@ -68,26 +76,8 @@ public class DishVisualController : MonoBehaviour
             dishRenderer.sprite = emptyDishSprite;
         }
     }
-
-    private void HandleQuestCompleted()
-    {
-        if (_resetCoroutine != null) StopCoroutine(_resetCoroutine);
-        dishRenderer.sprite = completedDishSprite;
-        _resetCoroutine = StartCoroutine(AnimatedResetAfterDelay(completedShowDuration));
-    }
-
-    private void HandleQuestFailed()
-    {
-        if (_resetCoroutine != null) StopCoroutine(_resetCoroutine);
-        dishRenderer.sprite = failedDishSprite;
-        _resetCoroutine = StartCoroutine(AnimatedResetAfterDelay(failedShowDuration));
-    }
-
     private IEnumerator AnimatedResetAfterDelay(float delay)
     {
-        // 等待完整显示时间
-        yield return new WaitForSeconds(delay);
-
         // 渐出动画
         float elapsed = 0;
         Color originalColor = dishRenderer.color;
@@ -100,11 +90,10 @@ public class DishVisualController : MonoBehaviour
         }
 
         // 重置状态
-        if (!HasPartialProgress())
-        {
+      
             dishRenderer.sprite = emptyDishSprite;
             dishRenderer.color = originalColor; // 恢复透明度
-        }
+        
         _resetCoroutine = null;
     }
 
@@ -112,7 +101,7 @@ public class DishVisualController : MonoBehaviour
     {
         foreach (var recipe in _questManager.CurrentQuest)
         {
-            if (recipe.currentAmount > 0 && recipe.currentAmount < recipe.requiredAmount)
+            if (recipe.currentAmount < recipe.requiredAmount)
             {
                 return true;
             }
