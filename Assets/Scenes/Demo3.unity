@@ -2627,12 +2627,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 1.2252156, y: 2.1192694}
-      - {x: -0.022414625, y: 0.71071637}
-      - {x: -0.8174616, y: -0.7537135}
-      - {x: -0.048910595, y: -0.61118436}
-      - {x: 1.1539431, y: 0.07565406}
-      - {x: 2.2343125, y: 1.2280754}
+    - - {x: 1.1233283, y: 2.2957435}
+      - {x: -0.19555718, y: 0.8068336}
+      - {x: -0.89326787, y: -0.758264}
+      - {x: -0.09408506, y: -0.8725643}
+      - {x: 1.3022233, y: -0.113250986}
+      - {x: 2.3983552, y: 1.2835693}
   m_UseDelaunayMesh: 0
 --- !u!50 &1524989482
 Rigidbody2D:
@@ -2950,7 +2950,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   checkInterval: 0.1
-  failCooldown: 0.5
+  failCooldown: 0.8
 --- !u!212 &1667707244
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3022,9 +3022,9 @@ MonoBehaviour:
   partialDishSprite: {fileID: 4318472054982164933, guid: a724d6f30449b463988539ab861cd745, type: 3}
   completedDishSprite: {fileID: 4318472054982164933, guid: a724d6f30449b463988539ab861cd745, type: 3}
   failedDishSprite: {fileID: 4318472054982164933, guid: a724d6f30449b463988539ab861cd745, type: 3}
-  completedShowDuration: 5
-  failedShowDuration: 1
-  fadeOutDuration: 0.8
+  completedShowDuration: 3
+  failedShowDuration: 0.2
+  fadeOutDuration: 0.2
   fadeCurve:
     serializedVersion: 2
     m_Curve:
@@ -3339,7 +3339,8 @@ MonoBehaviour:
   isGamePlay: 1
   countdownTime: 60
   animator: {fileID: 0}
-  timerImage: {fileID: 0}
+  timerImage: {fileID: 1423444123}
+  countDownType: 0
 --- !u!114 &1790857856
 MonoBehaviour:
   m_ObjectHideFlags: 0

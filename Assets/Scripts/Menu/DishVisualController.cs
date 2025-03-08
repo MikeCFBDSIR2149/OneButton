@@ -14,9 +14,9 @@ public class DishVisualController : MonoBehaviour
 
     [Header("Timing")]
     [SerializeField][Tooltip("完成状态持续时间（秒）")] 
-    private float completedShowDuration = 1f; // 默认延长至1秒
+    private float completedShowDuration; // 默认延长至1秒
     [SerializeField][Tooltip("失败状态持续时间（秒）")] 
-    private float failedShowDuration = 1f;    // 默认延长至1秒
+    private float failedShowDuration;    // 默认延长至1秒
 
     // 新增渐变动画参数
     [Header("Fade Animation")]

@@ -11,6 +11,9 @@ public class CountDown : MonoBehaviour
     private TextMeshProUGUI countdownText;
     public Animator animator;
     public Image timerImage;
+    public int countDownType;
+    
+    private Coroutine coroutine;
     
     private void Start()
     {
@@ -18,15 +21,15 @@ public class CountDown : MonoBehaviour
 
         if (isGamePlay)
         {
-            countdownText.text = "Time remaining: " + countdownTime + " seconds";
+            // countdownText.text = "Time remaining: " + countdownTime + " seconds";
+            timerImage.fillAmount = 1f;
+            timerImage.color = Color.white;
             StartCoroutine(CountDownCoroutineInGamePlay());
         }
         else
         {
-            // countdownText.text = "Game will start in " + countdownTime + " seconds...";
-            timerImage.fillAmount = 1f;
-            timerImage.color = Color.white;
-            StartCoroutine(CountDownCoroutine());
+            countdownText.text = "Game will start in " + countdownTime + " seconds...";
+            coroutine = StartCoroutine(CountDownCoroutine());
         }
     }
     
@@ -41,8 +44,7 @@ public class CountDown : MonoBehaviour
         }
         yield return new WaitForSeconds(1f);
         countdownText.text = "Game will start in 1 second...";
-        yield return new WaitForSeconds(0.5f);
-        countdownText.text = "Game Start!";
+        yield return new WaitForSeconds(1f);
         StartGameAnimation();
     }
     
@@ -60,6 +62,7 @@ public class CountDown : MonoBehaviour
         }
         yield return new WaitForSeconds(1f);
         // countdownText.text = "Time remaining: 1 second";
+        timerImage.fillAmount = 1f / countdownTime;
         yield return new WaitForSeconds(1f);
         // timerImage.fillAmount = 1f;
         // countdownText.text = "Game Over!";
@@ -68,6 +71,8 @@ public class CountDown : MonoBehaviour
 
     public void StartGameAnimation()
     {
+        StopCoroutine(coroutine);
+        countdownText.text = "Game Start!";
         animator?.SetTrigger(Up);
     }
 }
