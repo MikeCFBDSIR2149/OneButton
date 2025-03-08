@@ -53,6 +53,7 @@ MonoBehaviour:
   maxCuts: 5
   spawnOffset: {x: 0, y: 0.1}
   cutSprite: {fileID: -712631045867808456, guid: b670ab75dde984907b8570040daa08c5, type: 3}
+  cutParticleEffect: {fileID: 1616348631857724290, guid: a80f5f5a5bf472e429a0cdeed12e5278, type: 3}
 --- !u!212 &6371892134761541162
 SpriteRenderer:
   m_ObjectHideFlags: 0
