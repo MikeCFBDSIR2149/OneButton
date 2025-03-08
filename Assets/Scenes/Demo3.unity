@@ -3020,8 +3020,8 @@ MonoBehaviour:
   dishRenderer: {fileID: 132686673}
   emptyDishSprite: {fileID: -3481087721343560387, guid: 8d2608e0895a846859a9da36a1c902f9, type: 3}
   partialDishSprite: {fileID: 4318472054982164933, guid: a724d6f30449b463988539ab861cd745, type: 3}
-  completedDishSprite: {fileID: 4318472054982164933, guid: a724d6f30449b463988539ab861cd745, type: 3}
-  failedDishSprite: {fileID: 4318472054982164933, guid: a724d6f30449b463988539ab861cd745, type: 3}
+  completedDishSprite: {fileID: 2173887176973512725, guid: 74886e32dc4e046d08b6eb8101c05e24, type: 3}
+  failedDishSprite: {fileID: 202677227944952339, guid: 8620907e66c26457b9217e3cab4e9e09, type: 3}
   completedShowDuration: 3
   failedShowDuration: 0.2
   fadeOutDuration: 0.2

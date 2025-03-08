@@ -76,10 +76,10 @@ public class QuestManager : MonoBehaviour
     {
         foreach (var recipe in CurrentQuest)
         {
-            if (recipe.currentAmount >= recipe.requiredAmount)
-                return false;
+            if (recipe.currentAmount > recipe.requiredAmount)
+                return true;
         }
-        return true;
+        return false;
     }
 
     public bool TryDeliverIngredient(IngredientType type)

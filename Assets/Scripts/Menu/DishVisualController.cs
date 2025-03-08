@@ -32,6 +32,8 @@ public class DishVisualController : MonoBehaviour
     {
         _questManager = FindFirstObjectByType<QuestManager>();
         dishRenderer.sprite = emptyDishSprite;
+        _questManager.OnQuestFailed += OnQuestFailed;
+        _questManager.OnQuestCompleted += OnQuestCompleted;
     }
 
     private void OnEnable()
@@ -52,29 +54,26 @@ public class DishVisualController : MonoBehaviour
             StopCoroutine(_resetCoroutine);
             _resetCoroutine = null;
         }
-
-        // 如果所有任务都完成
-        if (_questManager.CheckQuestComplete())
-        {
-            dishRenderer.sprite = completedDishSprite;
-            _resetCoroutine = StartCoroutine(AnimatedResetAfterDelay(completedShowDuration));
-        }
-        // 如果所有任务都失败
-        else if (_questManager.CheckQuestFailed())
-        {
-            dishRenderer.sprite = failedDishSprite;
-            _resetCoroutine = StartCoroutine(AnimatedResetAfterDelay(failedShowDuration));
-        }
         // 如果有部分进度
-        else if (HasPartialProgress())
+        if (HasPartialProgress())
         {
             dishRenderer.sprite = partialDishSprite;
         }
-        // 如果回到空状态且没有正在显示的状态
-        else if (dishRenderer.sprite != emptyDishSprite)
+        
+        else
         {
             dishRenderer.sprite = emptyDishSprite;
         }
+    }
+    private void OnQuestFailed()
+    {
+        dishRenderer.sprite = failedDishSprite;
+        StartCoroutine(AnimatedResetAfterDelay(2f)); // 启动协程，等待两秒后恢复颜色并更新任务内容
+    }
+    private void OnQuestCompleted()
+    {
+        dishRenderer.sprite = completedDishSprite;
+        StartCoroutine(AnimatedResetAfterDelay(2f)); // 启动协程，等待两秒后恢复颜色并更新任务内容
     }
     private IEnumerator AnimatedResetAfterDelay(float delay)
     {
@@ -88,20 +87,29 @@ public class DishVisualController : MonoBehaviour
             elapsed += Time.deltaTime;
             yield return null;
         }
-
-        // 重置状态
-      
             dishRenderer.sprite = emptyDishSprite;
             dishRenderer.color = originalColor; // 恢复透明度
         
         _resetCoroutine = null;
+    }
+    private bool AllIngredientsReachTarget()
+    {
+        foreach (var recipe in _questManager.CurrentQuest)
+        {
+            // 如果任意一种食材的 currentAmount 不等于 requiredAmount
+            if (recipe.currentAmount != recipe.requiredAmount)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     private bool HasPartialProgress()
     {
         foreach (var recipe in _questManager.CurrentQuest)
         {
-            if (recipe.currentAmount < recipe.requiredAmount)
+            if (recipe.currentAmount > 0 && recipe.currentAmount <= recipe.requiredAmount)
             {
                 return true;
             }
@@ -109,15 +117,4 @@ public class DishVisualController : MonoBehaviour
         return false;
     }
 
-    private IEnumerator ResetAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        
-        // 只有在没有新进度时才重置为空
-        if (!HasPartialProgress())
-        {
-            dishRenderer.sprite = emptyDishSprite;
-        }
-        _resetCoroutine = null;
-    }
 }
