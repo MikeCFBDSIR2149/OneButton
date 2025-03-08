@@ -108,6 +108,7 @@ public class QuestManager : MonoBehaviour
         if (CheckQuestComplete())
         {
             GameStatusManager.Instance.score++;
+            AudioManager.Instance.PlaySFX(3);
             OnQuestCompleted?.Invoke();
             GenerateNewQuest(); // 生成新任务
         }

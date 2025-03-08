@@ -17,7 +17,7 @@ public class CuttableObject : MonoBehaviour
         if (cutCount >= maxCuts) return;
 
         // 第一次切割时改变贴图
-        if (!hasChangedSprite && cutSprite != null)
+        if (!hasChangedSprite && cutSprite)
         {
             SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
             if (spriteRenderer != null)
@@ -28,7 +28,7 @@ public class CuttableObject : MonoBehaviour
         }
 
         // 触发粒子效果
-        if (cutParticleEffect != null)
+        if (cutParticleEffect)
         {
             ParticleSystem particleInstance = Instantiate(cutParticleEffect, cutPosition, Quaternion.identity);
             particleInstance.Play(); // 播放粒子效果
@@ -45,6 +45,8 @@ public class CuttableObject : MonoBehaviour
                 Quaternion.identity
             );
         }
+        
+        AudioManager.Instance.PlaySFX(2);
 
         // 更新切割次数
         cutCount++;
