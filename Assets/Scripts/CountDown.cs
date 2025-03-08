@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CountDown : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class CountDown : MonoBehaviour
     public int countdownTime; // 倒计时的时间
     private TextMeshProUGUI countdownText;
     public Animator animator;
+    public Image timerImage;
     
     private void Start()
     {
@@ -21,7 +23,9 @@ public class CountDown : MonoBehaviour
         }
         else
         {
-            countdownText.text = "Game will start in " + countdownTime + " seconds...";
+            // countdownText.text = "Game will start in " + countdownTime + " seconds...";
+            timerImage.fillAmount = 1f;
+            timerImage.color = Color.white;
             StartCoroutine(CountDownCoroutine());
         }
     }
@@ -49,12 +53,16 @@ public class CountDown : MonoBehaviour
         {
             yield return new WaitForSeconds(1f);
             time--;
-            countdownText.text = "Time remaining: " + time + " seconds";
+            // countdownText.text = "Time remaining: " + time + " seconds";
+            timerImage.fillAmount = (float)time / countdownTime;
+            if (time == 5)
+                timerImage.color = new Color(0.9f, 0f, 0f, 0.9f);
         }
         yield return new WaitForSeconds(1f);
-        countdownText.text = "Time remaining: 1 second";
-        yield return new WaitForSeconds(0.5f);
-        countdownText.text = "Game Over!";
+        // countdownText.text = "Time remaining: 1 second";
+        yield return new WaitForSeconds(1f);
+        // timerImage.fillAmount = 1f;
+        // countdownText.text = "Game Over!";
         GameStatusManager.Instance.GameOver();
     }
 

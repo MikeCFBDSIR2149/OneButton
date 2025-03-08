@@ -10,7 +10,7 @@ public class QuestUI : MonoBehaviour
     public Transform questItemParent;
     public GameObject questItemPrefab;
     private Color successColor = new(0.4f, 1f, 0.4f, 1f);
-    private Color failColor = new(1f, 0.4f, 0.3f, 1f);
+    private Color failColor = new(1f, 0.4f, 0.4f, 1f);
 
     [Header("引用")]
     public QuestManager questManager;
