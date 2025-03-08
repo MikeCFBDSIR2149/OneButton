@@ -52,6 +52,7 @@ MonoBehaviour:
   - {fileID: 7066173902315247450, guid: 4038fc87f1962f64d94adc98ebe9a6e7, type: 3}
   maxCuts: 5
   spawnOffset: {x: 0, y: 0.1}
+  cutSprite: {fileID: -712631045867808456, guid: cb21f2054ebdaf94699e7712cbc2d0c3, type: 3}
 --- !u!212 &5382666750180133591
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -96,7 +97,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ea3a1b25be9a84278b20e3f87c0b6349, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.023771644, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
