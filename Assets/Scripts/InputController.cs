@@ -95,7 +95,7 @@ public class InputController : MonoBehaviour
                 GameStatusManager.Instance.ExitGame();
                 break;
             case Status.GamePrep:
-                GameStatusManager.Instance.StartGame();
+                FindFirstObjectByType<CountDown>()?.StartGameAnimation();
                 break;
             case Status.GamePlay:
                 knife.LongCut();

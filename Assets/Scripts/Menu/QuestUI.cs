@@ -9,8 +9,8 @@ public class QuestUI : MonoBehaviour
     [Header("UI组件")]
     public Transform questItemParent;
     public GameObject questItemPrefab;
-    public Color successColor = Color.green;
-    public Color failColor = Color.red;
+    private Color successColor = new(0.4f, 1f, 0.4f, 1f);
+    private Color failColor = new(1f, 0.4f, 0.3f, 1f);
 
     [Header("引用")]
     public QuestManager questManager;
@@ -35,7 +35,7 @@ public class QuestUI : MonoBehaviour
             var item = Instantiate(questItemPrefab, questItemParent);
             var ui = item.GetComponent<QuestItemUI>();
             
-            if (ui != null)
+            if (ui)
             {
                 var prefab = questManager.GetIngredientPrefab(recipe.type);
                 var icon = prefab.GetComponent<IngredientItem>().iconRenderer.sprite;

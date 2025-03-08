@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class CountDown : MonoBehaviour
 {
+    private static readonly int Up = Animator.StringToHash("up");
     public bool isGamePlay;
     public int countdownTime; // 倒计时的时间
     private TextMeshProUGUI countdownText;
+    public Animator animator;
     
     private void Start()
     {
@@ -37,7 +39,7 @@ public class CountDown : MonoBehaviour
         countdownText.text = "Game will start in 1 second...";
         yield return new WaitForSeconds(0.5f);
         countdownText.text = "Game Start!";
-        GameStatusManager.Instance.StartGame();
+        StartGameAnimation();
     }
     
     private IEnumerator CountDownCoroutineInGamePlay()
@@ -54,5 +56,10 @@ public class CountDown : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         countdownText.text = "Game Over!";
         GameStatusManager.Instance.GameOver();
+    }
+
+    public void StartGameAnimation()
+    {
+        animator?.SetTrigger(Up);
     }
 }

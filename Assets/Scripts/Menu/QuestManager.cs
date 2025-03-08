@@ -59,6 +59,7 @@ public class QuestManager : MonoBehaviour
     public void FailCurrentQuest()
     {
         OnQuestFailed?.Invoke();
+        FindFirstObjectByType<CameraController>()?.ShakeCamera(0.1f, 0.04f);
         GenerateNewQuest(); // 失败后生成新任务
     }
 
