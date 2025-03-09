@@ -1239,7 +1239,7 @@ MonoBehaviour:
   - {fileID: 3705362628018078909, guid: 1517974685d074048a9d680ecd9ce87e, type: 3}
   - {fileID: 7788333703037728040, guid: 6f172a73ad03f77459f7591e6369ef5e, type: 3}
   launchPoint: {fileID: 324559846}
-  timer: 1.5
+  interval: 0.75
 --- !u!212 &324559845
 SpriteRenderer:
   m_ObjectHideFlags: 0

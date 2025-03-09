@@ -1,10 +1,18 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ProjectileLauncher : MonoBehaviour
 {
     public GameObject[] projectilePrefabs; // 发射的物体预制体数组
     public Transform launchPoint; // 发射点
-    public float timer; // 发射间隔时间
+    public float interval;
+    private float timer; // 发射间隔时间
+
+    private void Start()
+    {
+        timer = interval;
+    }
 
     private void Update()
     {
@@ -13,7 +21,7 @@ public class ProjectileLauncher : MonoBehaviour
         if (timer < 0)
         {
             LaunchProjectile();
-            timer = 1.0f; // 重置计时器
+            timer = interval; // 重置计时器
         }
     }
 
