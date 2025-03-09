@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Prep.unity
     guid: 3ae21d5b5dba144de9154ac88292877c
   - enabled: 1
-    path: Assets/Scenes/Demo3.unity
+    path: Assets/Scenes/Gameplay.unity
     guid: e9ba65c0b5b344632b0c2ef5d37e3f5e
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
