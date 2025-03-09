@@ -6,10 +6,10 @@ public class QuestManager : MonoBehaviour
     [System.Serializable]
     public class QuestConfig
     {
-        public int minIngredients = 1;
-        public int maxIngredients = 3;
-        public int minAmount = 1;
-        public int maxAmount = 5;
+        public int minIngredients;
+        public int maxIngredients;
+        public int minAmount;
+        public int maxAmount;
     }
 
     [Header("任务配置")]

@@ -19,6 +19,7 @@ public class AudioManager : MonoSingleton<AudioManager>
 
     public void PlaySFX(int id)
     {
+        if (id >= sfxClips.Count) return;
         AudioClip clip = sfxClips[id];
         if (clip)
         {
