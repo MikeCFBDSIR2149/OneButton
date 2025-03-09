@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6371892134761541162}
   - component: {fileID: 2753882452987467987}
   - component: {fileID: -3855109126774128874}
-  - component: {fileID: 4617980562790653279}
+  - component: {fileID: 5189349895148729446}
   m_Layer: 6
   m_Name: I_Apple
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.0292115, y: -1.8400283, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 0.5039489, y: 0.49077383, z: 1.21992}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -52,8 +52,8 @@ MonoBehaviour:
   - {fileID: 1813976693278698967, guid: 02c094f5e593d754d98336efdd678844, type: 3}
   maxCuts: 5
   spawnOffset: {x: 0, y: 0.1}
-  cutSprite: {fileID: -712631045867808456, guid: b670ab75dde984907b8570040daa08c5, type: 3}
-  cutParticleEffect: {fileID: 1859975596833139012, guid: 518b7efb742b37547acf08e1557ff905, type: 3}
+  cutSprite: {fileID: 21300000, guid: 6b6b7ec068b51fd4cb3ccd0251bbda6b, type: 3}
+  cutParticleEffect: {fileID: 7083284037679847184, guid: 70ae9c2f48105d7419af1a492be6f83b, type: 3}
 --- !u!212 &6371892134761541162
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -149,7 +149,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &4617980562790653279
+--- !u!58 &5189349895148729446
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -184,4 +184,4 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Radius: 1.995

@@ -11,8 +11,10 @@ public enum IngredientType
 {
     Watermelon,
     Apple,
-    Banana,
-    Carrot,
+    Strawberry,
+    Mango,
+    DragonFruit,
+    KiwiFruit,
     // 添加更多类型...
 }
 

@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007305ae06554254994844d07303da67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
+  type: 3
   iconRenderer: {fileID: 5418202250733682472}
   originalMaterial: {fileID: 6200000, guid: 7117be6f7edbb4869aac5e775da3832f, type: 2}
   finalMaterial: {fileID: 6200000, guid: 697b63c25512144378f88bd7d8bdca96, type: 2}

@@ -1018,7 +1018,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   config:
     minIngredients: 2
-    maxIngredients: 5
+    maxIngredients: 4
     minAmount: 1
     maxAmount: 5
   ingredientPrefabs:
@@ -1026,6 +1026,8 @@ MonoBehaviour:
   - {fileID: 1813976693278698967, guid: 02c094f5e593d754d98336efdd678844, type: 3}
   - {fileID: 5946666680808276450, guid: aa41ba8c80cdbf84cb4834775b906084, type: 3}
   - {fileID: 5946666680808276450, guid: 09f93b6fca12e4e7cbce47db8fa74d33, type: 3}
+  - {fileID: 7788333703037728040, guid: 6f172a73ad03f77459f7591e6369ef5e, type: 3}
+  - {fileID: 3705362628018078909, guid: 1517974685d074048a9d680ecd9ce87e, type: 3}
 --- !u!1 &324559843
 GameObject:
   m_ObjectHideFlags: 0
@@ -1061,6 +1063,8 @@ MonoBehaviour:
   - {fileID: 8649868346420531760, guid: 07e7d5ce97170424d94d9579608f8382, type: 3}
   - {fileID: 7788333703037728040, guid: 1072405d3e903d640bd954ebd2ff458f, type: 3}
   - {fileID: 7788333703037728040, guid: 9a5ef0d09d62b4d2dbabfec38bd669a1, type: 3}
+  - {fileID: 3705362628018078909, guid: 1517974685d074048a9d680ecd9ce87e, type: 3}
+  - {fileID: 7788333703037728040, guid: 6f172a73ad03f77459f7591e6369ef5e, type: 3}
   launchPoint: {fileID: 324559846}
   timer: 1.5
 --- !u!212 &324559845
@@ -3020,8 +3024,8 @@ MonoBehaviour:
   dishRenderer: {fileID: 132686673}
   emptyDishSprite: {fileID: -3481087721343560387, guid: 8d2608e0895a846859a9da36a1c902f9, type: 3}
   partialDishSprite: {fileID: 4318472054982164933, guid: a724d6f30449b463988539ab861cd745, type: 3}
-  completedDishSprite: {fileID: 2173887176973512725, guid: 74886e32dc4e046d08b6eb8101c05e24, type: 3}
-  failedDishSprite: {fileID: 202677227944952339, guid: 8620907e66c26457b9217e3cab4e9e09, type: 3}
+  completedDishSprite: {fileID: 4318472054982164933, guid: a724d6f30449b463988539ab861cd745, type: 3}
+  failedDishSprite: {fileID: 4318472054982164933, guid: a724d6f30449b463988539ab861cd745, type: 3}
   completedShowDuration: 3
   failedShowDuration: 0.2
   fadeOutDuration: 0.2

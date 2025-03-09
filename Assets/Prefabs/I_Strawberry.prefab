@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8529871548865104349}
   - component: {fileID: 1964505516414524383}
   - component: {fileID: 3368358171652875714}
-  - component: {fileID: 2918106224616596693}
+  - component: {fileID: 6553755630786267057}
   m_Layer: 6
   m_Name: I_Strawberry
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.0292115, y: -1.8400283, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 0.8924598, y: 0.8924598, z: 0.8924598}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -49,11 +49,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPrefabs:
-  - {fileID: 5946666680808276450, guid: 09f93b6fca12e4e7cbce47db8fa74d33, type: 3}
+  - {fileID: 5946666680808276450, guid: 35a2d3c0467f6a4488be8d9410ab633f, type: 3}
   maxCuts: 5
   spawnOffset: {x: 0, y: 0.1}
-  cutSprite: {fileID: -712631045867808456, guid: cb21f2054ebdaf94699e7712cbc2d0c3, type: 3}
-  cutParticleEffect: {fileID: 7282071932767820389, guid: e68cf7530b2bbc440a49b9c188f23966, type: 3}
+  cutSprite: {fileID: 21300000, guid: 78d96a76f2896424791a06d8c96d8f9d, type: 3}
+  cutParticleEffect: {fileID: 1859975596833139012, guid: 518b7efb742b37547acf08e1557ff905, type: 3}
 --- !u!212 &8529871548865104349
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -149,7 +149,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &2918106224616596693
+--- !u!58 &6553755630786267057
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -184,4 +184,4 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Radius: 1.295
