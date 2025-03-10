@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using TMPro;
 
 public class QuestManager : MonoBehaviour
 {
@@ -108,6 +109,8 @@ public class QuestManager : MonoBehaviour
         if (CheckQuestComplete())
         {
             GameStatusManager.Instance.score++;
+            FindFirstObjectByType<Cite>().gameObject.GetComponent<TextMeshProUGUI>().text =
+                "Score: " + GameStatusManager.Instance.score;
             AudioManager.Instance.PlaySFX(3);
             OnQuestCompleted?.Invoke();
             GenerateNewQuest(); // 生成新任务

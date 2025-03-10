@@ -68,7 +68,11 @@ public class InputController : MonoBehaviour
             }
             else
             {
-                if (fillImage) fillImage.color = Color.gray;
+                if (fillImage)
+                {
+                    fillImage.color = Color.white;
+                    pressSlider.value = 1;
+                }
                 OnShortPress();
             }
 

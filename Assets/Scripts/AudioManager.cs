@@ -6,14 +6,19 @@ using UnityEngine;
 
 public class AudioManager : MonoSingleton<AudioManager>
 {
-    private AudioSource sfxSource;
+    public AudioSource sfxSource;
+    public AudioSource bgmSource;
     
     public List<AudioClip> sfxClips = new();
 
+    
+    
     public void Initialize()
     {
         DontDestroyOnLoad(gameObject);
-        sfxSource = GetComponent<AudioSource>();
+        if (!bgmSource) return;
+        if (!bgmSource.isPlaying) bgmSource.Play();
+        // sfxSource = GetComponent<AudioSource>();
         Debug.Log("AudioManager initialized");
     }
 
