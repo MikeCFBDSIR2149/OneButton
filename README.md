@@ -10,7 +10,7 @@ Each time you slice a fruit, a fruit slice will drop onto the cutting board.
 In the left side you can see the order board, which displays the required types and quantities of fruit slices.  
 Press and hold "Space" to throw/push the fruit slices on cutting board into the box, when the types and quantities match with the order, this order is marked as complete and next order will come. At the same time you will get 1 score.  
 If the types or quantities mismatch, current order will be dismissed and next order come, but you can't get any score.  
-
+***
 # 关于
 ## 这是什么？
 这是一款游戏，但其实是一个学校作业。  
